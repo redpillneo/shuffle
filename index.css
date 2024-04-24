@@ -5,7 +5,7 @@ body{
   display: flex;
   flex-direction: column;
   height: 1080px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto Mono";
 }
 #headerDiv{
   background-color: #BDAE93;
@@ -42,9 +42,45 @@ body{
 
 .config{
   display: flex;
-  height: 30px;
+  height: 50px;
   padding: 10px;
   background-color: #EBDBB2;
   border-bottom: solid 1px #BDAE93;
-  align-items: center;
+  flex-direction: column;
+  font-weight: 900;
+  
+  color: #242424;
+}
+
+.config label{
+  padding-bottom: 5px;
+  background-color:#EBDBB2 ;
+}
+
+.config select{
+  font-family: inherit;
+  width:fit-content;
+  border: none;
+  background-color:#EBDBB2 ;
+}
+.config input{
+  font-family: inherit;
+  width: fit-content;
+  border: none;
+  background-color:#EBDBB2 ;
+}
+#recall_mode{
+  font-family: inherit;
+  width: inherit;
+  border: none;
+  background-color:#EBDBB2 ;
+}
+#recall_mode:hover{
+   border:#686868 solid 1px;
+  border-radius: 4px;
+}
+
+.config select:hover, .config input:hover{
+  border:#686868 solid 1px;
+  border-radius: 4px;
 }

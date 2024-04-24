@@ -24,25 +24,34 @@
     <div id="main">
       <div id="displayDiv"></div>
       <div id="configDiv">
-        <div class="config">
-          <div>
-            time mode
-          </div>
-          <div>
-            <input type="number">
-          </div>
+        <div class="config" id="time_mode_div">
+          <label for="time_mode">time mode</label>
+          <select name="time_mode" id="time_mode">
+            <option value="zen">zen</option>
+            <option value="timed">timed</option>
+          </select>
+        </div>
+        <div class="config" id="shuffle_mode_div">
+          <label for="shuffle_mode">shuffle mode</label>
+          <select name="shuffle_mode" id="shuffle_mode">
+            <option value="normal">normal</option>
+            <option value="standard">standard</option>
+          </select>
         </div>
         <div class="config">
-          <p>decks</p>
+          <label for="deck_no">decks</label>
+          <input type="number" name="deck_no" id="deck_no" value="1" min="1" max="5">
         </div>
         <div class="config">
-          <p>cards</p>
+          <label for="card_no">cards</label>
+          <input type="number" name="card_no" id="card_no" value="52" max="52" min="7">
         </div>
         <div class="config">
-          <p>shuffle mode</p>
-        </div>
-        <div class="config">
-          <p>recall mode</p>
+          <label for="recall_mode">recall mode</label>
+          <select name="recall_mode" id="recall_mode">
+            <option value="sim_comp">simultaneous comparison</option>
+            <option value="fill_list">fill list</option>
+          </select>
         </div>
       </div>
     </div>
