@@ -1,0 +1,18 @@
+{
+  "name": "shuffle",
+  "version": "1.0.0",
+  "description": "playing card memorization training app",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "Nathaniel Eulin",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^30.0.1"
+  },
+  "dependencies": {
+    "electron-reload": "^2.0.0-alpha.1"
+  }
+}

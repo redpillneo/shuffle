@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Shuffle 1.0</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="headerDiv">
+      <img id="shuffle-title" src="images/shuffle-title.svg" alt="">
+    </div>
+    <div id="main">
+      <div id="displayDiv"></div>
+      <div id="configDiv">
+        <div class="config">
+          <div>
+            time mode
+          </div>
+          <div>
+            <input type="number">
+          </div>
+        </div>
+        <div class="config">
+          <p>decks</p>
+        </div>
+        <div class="config">
+          <p>cards</p>
+        </div>
+        <div class="config">
+          <p>shuffle mode</p>
+        </div>
+        <div class="config">
+          <p>recall mode</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
