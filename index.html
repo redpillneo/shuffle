@@ -23,7 +23,16 @@
     </div>
     <div id="main">
       <div id="displayDiv"></div>
+      <!-- configurations div -->
       <div id="configDiv">
+        <div class="config">
+          <label for="deck_no">decks</label>
+          <input type="number" name="deck_no" id="deck_no" value="1" min="1" max="5">
+        </div>
+        <div class="config">
+          <label for="card_no">cards</label>
+          <input type="number" name="card_no" id="card_no" value="52" max="52" min="7">
+        </div>
         <div class="config" id="time_mode_div">
           <label for="time_mode">time mode</label>
           <select name="time_mode" id="time_mode">
@@ -39,19 +48,14 @@
           </select>
         </div>
         <div class="config">
-          <label for="deck_no">decks</label>
-          <input type="number" name="deck_no" id="deck_no" value="1" min="1" max="5">
-        </div>
-        <div class="config">
-          <label for="card_no">cards</label>
-          <input type="number" name="card_no" id="card_no" value="52" max="52" min="7">
-        </div>
-        <div class="config">
           <label for="recall_mode">recall mode</label>
           <select name="recall_mode" id="recall_mode">
             <option value="sim_comp">simultaneous comparison</option>
             <option value="fill_list">fill list</option>
           </select>
+        </div>
+        <div id="start_session">
+          <button>start session</button>
         </div>
       </div>
     </div>
