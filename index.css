@@ -105,6 +105,7 @@ body{
   height: 370px;
   object-fit: contain;
   filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+  margin-top: 20px;
 }
 
 .loginDiv{
@@ -131,5 +132,18 @@ body{
   border: 1px solid #242424;
   padding-left: 10px;
   padding-right: 10px;
+  transition: 0.3s;
+}
+.loginDiv button:active{
+  border: none;
+}
+
+#logo:hover{
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+  transition: 0.3s;
+}
+
+#displayDiv p:hover{
+  text-decoration: underline;
   transition: 0.3s;
 }
