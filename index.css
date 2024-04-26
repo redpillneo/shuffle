@@ -26,10 +26,14 @@ body{
   display: flex;
   width: 100%;
   height: 100%;
+  flex-direction: column;
 }
 #displayDiv{
   display: flex;
   width: 100%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 #configDiv{
   background-color: #EBDBB2;
@@ -98,5 +102,34 @@ body{
 }
 
 #logo{
-  height: 300px;
+  height: 370px;
+  object-fit: contain;
+  filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+.loginDiv{
+  align-items: center;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.loginDiv button{
+  font-family: inherit;
+  font-weight: 900;
+  font-size: 1em;
+  padding: 7px;
+  border: none;
+  border-radius:10px;
+  background-color: #A9A7BA;
+  margin: 10px;
+  color: #2e2d34;
+  opacity: 0.8;
+}
+
+.loginDiv button:hover{
+  opacity: 1;
+  border: 1px solid #242424;
+  padding-left: 10px;
+  padding-right: 10px;
+  transition: 0.3s;
 }
