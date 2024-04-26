@@ -92,3 +92,7 @@ body{
   padding: 7px;
   margin: 0 auto;
 }
+
+#start_session button:hover{
+  border: #242424 solid 1px;
+}
