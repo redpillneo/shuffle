@@ -96,3 +96,7 @@ body{
 #start_session button:hover{
   border: #242424 solid 1px;
 }
+
+#logo{
+  height: 300px;
+}
