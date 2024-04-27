@@ -486,6 +486,53 @@ CREATE TABLE session_results (
   FOREIGN KEY (sess_card_10d) REFERENCES user_cards(user_card_ID),
   FOREIGN KEY (sess_card_jd) REFERENCES user_cards(user_card_ID),
   FOREIGN KEY (sess_card_qd) REFERENCES user_cards(user_card_ID),
-  FOREIGN KEY (sess_card_kd) REFERENCES user_cards(user_card_ID)
+  FOREIGN KEY (sess_card_kd) REFERENCES user_cards(user_card_ID),
+
+  FOREIGN KEY (session_ID) REFERENCES training_sessions(session_ID)
 
 );
+
+-- session_configurations table
+
+CREATE TABLE session_configs (
+  config_ID INT NOT NULL PRIMARY KEY,
+  session_ID INT NOT NULL,
+  user_ID INT NOT NULL,
+  time_mode_ID INT NOT NULL,
+  shuff_mode_ID INT NOT NULL,
+  deck_no INT NOT NULL,
+  card_no INT NOT NULL,
+  session_decks TEXT,
+
+  FOREIGN KEY (time_mode_ID) REFERENCES time_modes(time_mode_ID),
+  FOREIGN KEY (shuff_mode_ID) REFERENCES shuff_modes(shuff_mode_ID),
+  FOREIGN KEY (user_ID) REFERENCES shuffle_users(user_ID)
+);
+
+-- training_sessions
+CREATE TABLE training_sessions(
+  session_ID INT NOT NULL PRIMARY KEY,
+  user_ID INT NOT NULL,
+  config_ID INT NOT NULL,
+  session_result_ID INT NOT NULL,
+  time_stamp TIMESTAMP,
+
+  FOREIGN KEY (user_ID) REFERENCES shuffle_users(user_ID),
+  FOREIGN KEY (config_ID) REFERENCES session_configs(config_ID)
+);
+
+
+-- time_modes tables
+
+CREATE TABLE time_modes(
+  time_mode_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  description TEXT
+);
+
+CREATE TABLE shuff_modes(
+  shuff_mode_ID INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  description TEXT
+);
+
+
+-- 
