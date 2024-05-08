@@ -7,3 +7,5 @@ connection.query("SELECT * from standard_cards where card_suite = 'Hearts'", (er
     console.log('Query results: ', results);
   }
 })
+
+
