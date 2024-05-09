@@ -1,22 +1,28 @@
-const mysql = require('mysql');
+import mysql from 'mysql2'
+import dotenv from 'dotenv'
+dotenv.config()
 
 // create a new MySQL connection
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: 'admajoremDeigloriam!',
-  database: 'shuffle_db'
-});
+const pool = mysql.createPool({
+  host: process.env.MYSQL_HOST,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE 
+}).promise()
 
-// connect to the MySQL database
-connection.connect((error) => {
-  if (error) {
-    console.error('Error connecting to MySQL database:', error);
-  } else {
-    console.log('Connected to MySQL database!');
-  }
-});
+async function getUsers(){
+  const [rows] = await pool.query("SELECT * FROM shuffle_users")
+  return rows
+}
 
-// export the connection object
-module.exports = connection;
+async function getUser(id){
+  const [rows] = await pool.query(`
+    SELECT * 
+    FROM shuffle_users
+    WHERE user_id = ?
+    `, [id])
+  return rows
+}
 
+const user = await getUsers(100)
+console.log(user)
