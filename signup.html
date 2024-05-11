@@ -2,15 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
-    <meta
-      http-equiv="X-Content-Security-Policy"
-      content="default-src 'self'; script-src 'self'"
-    />
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;">
     <title>Shuffle 1.0</title>
     <link rel="stylesheet" href="index.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,7 +23,7 @@
           <input type="text" id="usernameInput" placeholder="username">
           <input type="text" id="passInput" pattern="[A-Za-z0-9]{8}" maxlength="8" required placeholder="password">
           <input type="text" id="confPassInput" placeholder="confirm password">
-          <button id="confirmSignup">submit</button>
+          <button type="submit" id="confirmSignup">submit</button>
         </form>
       </div>
       <div id="message"></div>

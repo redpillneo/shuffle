@@ -1,27 +1,14 @@
-import express from 'express'
-const app = express()
+const username = "natnat4"  
+const password = "natnat3"
 
-app.use(express.json())
-
-import {getUser, getUsers, signupUser} from './shuffle_db.js'
-
-
-app.get("/shuffle", (req, res) => {
-  res.send("this should be the notes")
-})
-
-app.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-})
-
-// app listener for post
-app.post("/shuffle", async (req, res) => {
-  const {username, password} = req.body
-  const result = await signupUser(username, password)
-  res.status(201).send(result)
-})
-
-app.listen(8080, () => {
-  console.log('Server is running on port 8080 hshs')
-})
+fetch("http://localhost:8080/shuffle", {
+  method: "POST",
+  body: JSON.stringify({
+    username: username,
+    password: password,
+  }),
+  headers: {
+    "Content-type": "text/plain"
+  },
+  "mode":"no-cors"
+});
