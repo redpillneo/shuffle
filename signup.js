@@ -1,35 +1,27 @@
-document.getElementById("confirmSignup").addEventListener("click", function(){
-  const username = document.getElementById("usernameInput").value;
-  const password = document.getElementById("passInput").value;
-  const confirmPassword = document.getElementById("confPassInput").value;
+import express from 'express'
+const app = express()
 
-  if(!username){
-    alert("Enter username");
-    return;
-  }
-  if(!password){
-    alert("Enter password");
-    return;
-  }
-  if(!confirmPassword){
-    alert("Confirm Password");
-    return;
+app.use(express.json())
 
-  }
-  if(password !== confirmPassword){
-    alert("Passwords do not match!");
-    return;
-  }
-  alert(username);
-  alert(password);
+import {getUser, getUsers, signupUser} from './shuffle_db.js'
 
 
-  userSignup(username, password)
-    .then(results => {
-      console.log('User inserted successfully: ', results);
-    })
-    .catch(error => {
-      console.error('Error inserting user: ', error);
-    })
-});
+app.get("/shuffle", (req, res) => {
+  res.send("this should be the notes")
+})
 
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
+
+// app listener for post
+app.post("/shuffle", async (req, res) => {
+  const {username, password} = req.body
+  const result = await signupUser(username, password)
+  res.status(201).send(result)
+})
+
+app.listen(8080, () => {
+  console.log('Serever is running on port 8080')
+})

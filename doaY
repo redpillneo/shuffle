@@ -1,0 +1,83 @@
+[33mcommit a39ea4f8a245bf2411ee46d483d8bf249d81ebf0[m[33m ([m[1;36mHEAD -> [m[1;32mlogin[m[33m, [m[1;31morigin/login[m[33m)[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Thu May 9 08:47:17 2024 +0800
+
+    added signupUser function in shuffle.js
+
+[33mcommit e9c8963eefb5ef6e905bdf5e11477801ba01b3bc[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Wed May 8 15:22:43 2024 +0800
+
+    signup and login js
+
+[33mcommit 98f54ab7a53a1cac0717ccb060a16818423e7189[m[33m ([m[1;31morigin/nav-bar[m[33m, [m[1;32mnav-bar[m[33m)[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Wed May 8 14:27:54 2024 +0800
+
+    added nav bar for both login and signup
+
+[33mcommit 8f15b22faa9837f04b51095a2471a444a5222c1c[m[33m ([m[1;31morigin/shuffle_db[m[33m, [m[1;32mshuffle_db[m[33m)[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Wed May 8 14:03:20 2024 +0800
+
+    add signup page
+
+[33mcommit 0b20215cd816cf065de5ddfd2beaa0eb0f8c0877[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Sat Apr 27 19:41:19 2024 +0800
+
+    finished db
+
+[33mcommit c9b435eff391fad7680c946df8fd89f1a1bcabea[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Sat Apr 27 19:00:07 2024 +0800
+
+    written most of the tables
+
+[33mcommit 9eafc8944ca38e42aec31c0ace6b708da7b9e6a2[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Fri Apr 26 17:24:04 2024 +0800
+
+    added login and signup button animations
+
+[33mcommit 396921eea1bb095ac0045ecd2e1cdef618b1a8a7[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Fri Apr 26 17:04:46 2024 +0800
+
+    added login and signup button animations
+
+[33mcommit f576e9ed9ebe287645e36e112a8a33902e54857e[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Fri Apr 26 16:26:34 2024 +0800
+
+    added the logo
+
+[33mcommit 9de0f123e153331272f17be2dfe7577c0b6d0e45[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Fri Apr 26 14:40:07 2024 +0800
+
+    initial commit to login page branch
+
+[33mcommit 33d673241a1fc991093a5608ad0f5542189cc991[m[33m ([m[1;31morigin/config_ui[m[33m)[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Fri Apr 26 14:20:43 2024 +0800
+
+    new database draft file
+
+[33mcommit 499d83688ac9b81e2cd50ce25766e17660a6bbd2[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Thu Apr 25 20:44:21 2024 +0800
+
+    hover on start session button
+
+[33mcommit 187fba8a3deea972d8e87057769239d10771484c[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Wed Apr 24 19:11:54 2024 +0800
+
+    configuration inputs and selections done
+
+[33mcommit ab37afbaff2c8a6a4af2a04d67812c470439e050[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: redpilledneo <eulinnathaniel@gmail.com>
+Date:   Wed Apr 24 16:09:27 2024 +0800
+
+    initial commit

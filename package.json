@@ -6,18 +6,21 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron .",
+    "dev": "npm nodemon signup.js"
   },
   "author": "Nathaniel Eulin",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^30.0.1"
+    "electron": "^30.0.1",
+    "nodemon": "^3.1.0"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
     "electron-reload": "^2.0.0-alpha.1",
     "express": "^5.0.0-beta.3",
     "mysql": "^2.18.1",
-    "mysql2": "^3.9.7"
+    "mysql2": "^3.9.7",
+    "node-fetch": "^3.3.2"
   }
 }

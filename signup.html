@@ -26,15 +26,17 @@
       </div>
     </div>  
     <div id="main">
-      <div class="authenDiv">
-        <h3>sign up</h3>
-        <input type="text" id="usernameInput" placeholder="username">
-        <input type="text" id="passInput" pattern="[A-Za-z0-9]{8}" maxlength="8" required placeholder="password">
-        <input type="text" id="confPassInput" placeholder="confirm password">
-        <button id="confirmSignup">submit</button>
+      <div class="authenDiv" id="signupForm">
+        <form id="signupForm">
+          <input type="text" id="usernameInput" placeholder="username">
+          <input type="text" id="passInput" pattern="[A-Za-z0-9]{8}" maxlength="8" required placeholder="password">
+          <input type="text" id="confPassInput" placeholder="confirm password">
+          <button id="confirmSignup">submit</button>
+        </form>
       </div>
-
+      <div id="message"></div>
     </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="signup.js">
     </script>
   </body>
