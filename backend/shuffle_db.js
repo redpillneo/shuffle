@@ -45,6 +45,7 @@ async function checkPassword(password){
 }
 
 async function signupUser(username, password){
+  console.log("Hi")
   const hasDuplicate = await checkDuplicate(username)
   const validPassword = await checkPassword(password)
   if(!validPassword){

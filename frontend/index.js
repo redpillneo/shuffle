@@ -23,6 +23,7 @@ async function getListOfCards() {
 
   if(response.ok) {
     console.log("Success!");
+    window.location.href = 'home.html'
   } else {
     console.log("Error!" + data.error);
   }
