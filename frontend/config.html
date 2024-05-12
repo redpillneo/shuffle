@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <meta
+      http-equiv="X-Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'"
+    />
+    <title>Shuffle 1.0</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="headerDiv">
+      <img id="shuffle-title" src="images/shuffle-title.svg" alt="">
+    </div>
+    <div id="main">
+      <div id="displayDiv"></div>
+      <!-- configurations div -->
+      <div id="configDiv">
+        <div class="config">
+          <label for="deck_no">decks</label>
+          <input type="number" name="deck_no" id="deck_no" value="1" min="1" max="5">
+        </div>
+        <div class="config">
+          <label for="card_no">cards</label>
+          <input type="number" name="card_no" id="card_no" value="52" max="52" min="7">
+        </div>
+        <div class="config" id="time_mode_div">
+          <label for="time_mode">time mode</label>
+          <select name="time_mode" id="time_mode">
+            <option value="zen">zen</option>
+            <option value="timed">timed</option>
+          </select>
+        </div>
+        <div class="config" id="shuffle_mode_div">
+          <label for="shuffle_mode">shuffle mode</label>
+          <select name="shuffle_mode" id="shuffle_mode">
+            <option value="normal">normal</option>
+            <option value="standard">standard</option>
+          </select>
+        </div>
+        <div class="config">
+          <label for="recall_mode">recall mode</label>
+          <select name="recall_mode" id="recall_mode">
+            <option value="sim_comp">simultaneous comparison</option>
+            <option value="fill_list">fill list</option>
+          </select>
+        </div>
+        <div id="start_session">
+          <button>start session</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+

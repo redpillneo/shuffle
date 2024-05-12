@@ -5,14 +5,16 @@
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron .",
-    "dev": "npm nodemon signup.js"
+    "frontend": "cd frontend && electron main.js",
+    "backend": "cd backend && nodemon server.js",
+    "start": "concurrently --kill-others \"npm run backend\" \"npm run frontend\""
   },
   "author": "Nathaniel Eulin",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^30.0.1",
-    "nodemon": "^3.1.0"
+    "electron": "^30.0.3",
+    "nodemon": "^3.1.0",
+    "concurrently": "^8.2.2"
   },
   "dependencies": {
     "axios": "^1.6.8",
