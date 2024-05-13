@@ -212,3 +212,8 @@ h3{
 #nav-bar a:active{
   font-weight: bold;
 }
+
+/* home.html */
+#home_logo{
+  width: 200px;
+}
