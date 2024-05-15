@@ -9,6 +9,10 @@ app.get("/shuffle", (req, res) => {
   res.send("this should be the notes")
 })
 
+app.get("/user", (req, res) => {
+  // return the user
+})
+
 app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send('Something broke!')

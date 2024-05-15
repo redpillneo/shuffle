@@ -6,6 +6,7 @@ document.getElementById("loginButton").addEventListener("click", function() {
   window.location.href = 'login.html';
 });
 
+document.getElementById("shuffle-title").addEventListener("click", getListOfCards);
 
 async function getListOfCards() {
   const response = await fetch("http://localhost:8080/auth/signup", {

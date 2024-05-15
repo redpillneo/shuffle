@@ -20,6 +20,15 @@ async function getUsers(){
   return rows
 }
 
+async function getUserbyName(username){
+  const [rows] = await pool.query(`
+    SELECT user_ID 
+    FROM shuffle_users
+    where username = ?
+  `, [username])
+  return rows
+}
+
 async function getUser(id){
   const [rows] = await pool.query(`
     SELECT * 
