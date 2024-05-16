@@ -29,6 +29,17 @@ async function getUserbyName(username){
   return rows
 }
 
+// get user name by ID
+async function getUsername(id){
+  console.log("here")
+  const [rows] = await pool.query(`
+    SELECT username 
+    FROM shuffle_users
+    WHERE user_id = ?
+    `, [id])
+  return rows[0]
+}
+
 async function getUser(id){
   const [rows] = await pool.query(`
     SELECT * 
@@ -73,6 +84,20 @@ async function signupUser(username, password){
   }
 }
 
+// make a function that returns true if such username with password exists
+async function login(username, password){
+  console.log("login function called")
+  const [result] = await pool.query(`
+    SELECT user_ID from shuffle_users
+    where username = ? and
+    password = ?
+  `, [username, password])
+  console.log(result[0])
+  if(result[0]) {return result}
+  else {
+    return {success: false, error: "username does not exist"}
+  }}
 
 
-module.exports = { getUsers, getUser, checkDuplicate, checkPassword, signupUser };
+
+module.exports = { login, getUsers, getUser, checkDuplicate, checkPassword, signupUser };

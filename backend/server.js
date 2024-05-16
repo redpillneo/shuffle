@@ -1,18 +1,36 @@
 const express = require("express");
-const { getUser, getUsers, signupUser } = require("./shuffle_db.js");
+const { login, getUser, getUsers, signupUser, getUsername } = require("./shuffle_db.js");
 
 const app = express()
 
 app.use(express.json())
 
-app.get("/shuffle", (req, res) => {
-  res.send("this should be the notes")
+app.get("/shuffle/:id", (req, res) => {
+  const id = req.params.id
+  res.send(id)
 })
 
-app.get("/user", (req, res) => {
-  // return the user
-})
+// app.get("/user", (req, res) => {
+//   // return the user
+// })
 
+// get username by user ID
+app.get("/user/:id", async (req, res) => {
+  const userID = req.params.id
+  console.log(userID)
+  const username = await getUsername(userID)
+  res.send(userID)
+  // const username = getUsername()
+  // res.send(username)
+  // const userID = req.body;
+  // const result = await getUsername(userID);
+  if(result.success) {
+    console.log(result)
+  } else {
+    console.error("something broke in fetching username")
+  }
+
+})
 app.use((err, req, res, next) => {
   console.error(err.stack)
   res.status(500).send('Something broke!')
@@ -39,6 +57,19 @@ app.get("/test", (req, res) => {
 app.post("/auth/signup", async (req, res) => {
   const { username, password } = req.body;
   const result = await signupUser(username, password);
+
+  if(result.success) {
+    res.status(201).send(result)
+  } else {
+    console.log(result.status);
+    res.status(result.status || 500).send(result);
+  }
+});
+
+app.post("/auth/login", async (req, res) => {
+  console.log("inside signup")
+  const {username, password} = req.body;
+  const [result] = await login(username, password);
 
   if(result.success) {
     res.status(201).send(result)
