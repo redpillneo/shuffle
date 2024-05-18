@@ -1,0 +1,102 @@
+body{
+  padding: 0;
+  margin: auto;
+  background-color: #FBF1C7;
+  justify-content: center;
+  align-items: center;
+  font-family: "Roboto Mono";
+}
+#headerDiv{
+  background-color: #BDAE93;
+  height: 40px;
+  padding: 5px;
+  display: flex;
+  right: 0px;
+  left: 0px;
+  top: 0px;
+  justify-content: space-between;
+}
+
+#shuffle-title{
+  justify-content: center;
+  height: min-content;
+  align-items: center;
+}
+
+#main{
+  position: absolute;
+  width: 100%;
+  top: 50px;
+  bottom: 0px;
+}
+
+#nav-bar{
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  width: max-content;
+}
+
+#nav-bar a{
+  color: inherit;
+  text-decoration: none;
+  margin: 10px;
+  align-self: center;
+}
+
+#nav-bar a:active{
+  font-weight: bold;
+}
+
+#trainingSessionMain{
+  position: absolute;
+  top: 50px;
+  bottom: 0px;
+  width: 100%;
+}
+#deck-time-div{
+  display: flex;
+  background-color: blue;
+  flex-direction: row;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 5px 5px;
+}
+
+/* add the div for the deck and time */
+#deck-div{
+  background-color: red;
+  height: 100%;
+  width: 75%;
+  box-sizing: border-box;
+  margin-right: 5px;
+}
+
+#time-div{
+  background-color: green;
+  height: 100%;
+  width: 25%;
+  box-sizing: border-box;
+}
+
+#status-bar{
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #1e1e1e;
+  width: 200px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  color: #fffef8;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+#nav-buttons{
+  width: 100%;
+  box-sizing: border-box;
+  height: 100px;
+  background-color: aquamarine;
+}
+
+
