@@ -62,6 +62,7 @@ app.post("/auth/signup", async (req, res) => {
     res.status(201).send(result)
   } else {
     console.log(result.status);
+    alert("username already used")
     res.status(result.status || 500).send(result);
   }
 });
