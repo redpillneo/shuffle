@@ -14,7 +14,7 @@ async function createTrainingSession(){
   };
   console.log(data)
 
-  const response = await fetch("http://localhost:8080/createSession", {
+  const response = await fetch("http://localhost:8080/createConfig", {
     method: "POST",
     body: JSON.stringify(data),
     headers: {"Content-Type": "application/json"}
@@ -22,4 +22,7 @@ async function createTrainingSession(){
 
   const jsonData = await response.json();
   console.log(jsonData)
+  sessionStorage.setItem('trainingConfig', JSON.stringify(data));
+  console.log("here's the data from config: ", data)
+  window.location.href = "trainingSession.html";
 }
