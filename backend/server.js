@@ -82,8 +82,12 @@ app.post("/auth/login", async (req, res) => {
 
 // post the configuration of the training session
 app.post("/createSession", async (req, res) => {
-  
-})
+  const {deck_no, card_no, time_mode, recall_mode} = req.body
+  console.log(deck_no)
+  console.log(card_no)
+  console.log(time_mode)
+  console.log(recall_mode)
+});
 
 app.listen(8080, () => {
   console.log('Server is running on port 8080 hshs')

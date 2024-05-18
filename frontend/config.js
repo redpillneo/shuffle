@@ -6,9 +6,20 @@ async function createTrainingSession(){
   const time_mode = document.getElementById('time_mode').value
   const recall_mode = document.getElementById('recall_mode').value
 
-  console.log(deck_no)
-  console.log(card_no)
-  console.log(time_mode)
-  console.log(recall_mode)
+  const data = {
+    deck_no: deck_no, 
+    card_no: card_no, 
+    time_mode: time_mode, 
+    recall_mode: recall_mode
+  };
+  console.log(data)
 
+  const response = await fetch("http://localhost:8080/createSession", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {"Content-Type": "application/json"}
+  });
+
+  const jsonData = await response.json();
+  console.log(jsonData)
 }
