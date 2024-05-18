@@ -98,7 +98,6 @@ body{
   border-radius: 5px;
   padding: 7px;
   margin: 0 auto;
-  margin-top: 5px;
 }
 
 #start_session button:hover{
@@ -254,6 +253,6 @@ body{
   border:#686868 1px solid;
 }
 
-#displayDiv{
-  height: 100%;
+#displayDiv{i
+  height: 85%;
 }
