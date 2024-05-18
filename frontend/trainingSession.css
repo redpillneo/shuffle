@@ -70,6 +70,8 @@ body{
   width: 75%;
   box-sizing: border-box;
   margin-right: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 #time-div{
@@ -91,12 +93,18 @@ body{
   align-items: center;
   justify-content: space-evenly;
 }
+#majorDeckDiv{
+  height: 90%;
+  width: 100%;
+}
+/* #card-div{
+
+} */
+
 
 #nav-buttons{
   width: 100%;
   box-sizing: border-box;
-  height: 100px;
+  height: 10%;
   background-color: aquamarine;
 }
-
-

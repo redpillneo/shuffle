@@ -4,12 +4,14 @@ async function createTrainingSession(){
   const deck_no = document.getElementById('deck_no').value
   const card_no = document.getElementById('card_no').value
   const time_mode = document.getElementById('time_mode').value
+  const shuffle_mode = document.getElementById('shuffle_mode').value
   const recall_mode = document.getElementById('recall_mode').value
 
   const data = {
     deck_no: deck_no, 
     card_no: card_no, 
     time_mode: time_mode, 
+    shuffle_mode: shuffle_mode,
     recall_mode: recall_mode
   };
   console.log(data)
@@ -26,3 +28,4 @@ async function createTrainingSession(){
   console.log("here's the data from config: ", data)
   window.location.href = "trainingSession.html";
 }
+
