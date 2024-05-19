@@ -30,4 +30,3 @@ document.getElementById("createSessionButton").addEventListener("click", functio
 // })
 
 
-o

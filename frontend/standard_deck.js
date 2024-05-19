@@ -5,14 +5,9 @@ export class Card {
     this.card_name = card_name;
     this.value = value;
     this.suite = suite;
-  }
-  createCardElement() {
-    const cardDiv = document.createElement('div');
-    cardDiv.className = 'card';
-    cardDiv.textContent = `${this.card_name} of ${this.suite}`;
-    cardDiv.dataset.cardId = this.card_ID;
-    cardDiv.dataset.suite = this.suite;
-    return cardDiv;
+  } 
+  getName(){
+    return (`${this.card_name} of ${this.suite}`)
   }
 }
 
@@ -60,3 +55,11 @@ export function isCardInDeck(card, deck) {
         deckCard.suite === card.suite
     );
 }
+
+// export function showSessionCards(arr){
+//   for(var i = 1; i < length(arr); i++){
+//     for(var j = 1; j < length(arr[i]); j++){
+//       return arr[i][j]
+//     }
+//   }
+// }
