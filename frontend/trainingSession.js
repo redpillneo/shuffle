@@ -42,11 +42,12 @@ for(var i = 1; i <= deck_no; i++){
   }
   sessionCards.push(deck)
 }
-for(var i = 1; i <= sessionCards.length; i++){
-  for(var j = 1; j <= sessionCards[i-1].length; j++){
-    console.log(sessionCards[i-1][j-1].getName())
-  }
-}
+// getting all the cards
+// for(var i = 1; i <= sessionCards.length; i++){
+//   for(var j = 1; j <= sessionCards[i-1].length; j++){
+//     console.log(sessionCards[i-1][j-1].getName())
+//   }
+// }
 
 // timer
 function startTimer(display) {
@@ -71,6 +72,10 @@ window.onload = () => {
   const display = document.getElementById('timer');
   startTimer(display);
 };
+console.log(sessionCards[0][1].getName())
+
+// generating the images from the sessionCards
+
 
 
 
