@@ -72,9 +72,41 @@ window.onload = () => {
   const display = document.getElementById('timer');
   startTimer(display);
 };
-console.log(sessionCards[0][1].getName())
 
 // generating the images from the sessionCards
+// document.getElementById('deck-right').addEventListener('click', goToNextDeck)
+// document.getElementById('deck-left').addEventListener('click', backToLastDeck)
+// document.getElementById('shift-to-top').addEventListener('click', shiftToTop)
+// document.getElementById('shift-top-bottom').addEventListener('click', shiftToBottom)
+// document.getElementById('retract').addEventListener('click', retract)
+// document.getElementById('peek').addEventListener('click', peek)
+
+let deckIndex = 0
+let cardIndex = 0
+
+// function to generate cards based on which deck it is and sessionCards
+
+const cardContainer = document.getElementById('card-container')
+
+function createCard(card, index){
+  const cardDiv = document.createElement('div')
+  cardDiv.classList.add('card')
+  // cardDiv.id = `card${index}`
+
+  const img = document.createElement('img')
+  // get the image resource of the 
+  img.src = `images/cards/${card.getURL()}.png`
+
+  cardDiv.appendChild(img)
+  cardContainer.appendChild(cardDiv)
+}
+
+console.log(sessionCards[0][0].getURL())
+
+const card1 = sessionCards[0][0]
+createCard(card1, 1)
+
+// generateCards(sessionCards, deckIndex)
 
 
 

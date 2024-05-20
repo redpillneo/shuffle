@@ -9,7 +9,11 @@ export class Card {
   getName(){
     return (`${this.card_name} of ${this.suite}`)
   }
+  getURL(){
+    return (`${this.card_name}_of_${this.suite}`)
+  }
 }
+
 
 export function createDeck() {
     const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
