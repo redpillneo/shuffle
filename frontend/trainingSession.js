@@ -74,8 +74,8 @@ window.onload = () => {
 };
 
 // generating the images from the sessionCards
-// document.getElementById('deck-right').addEventListener('click', goToNextDeck)
-// document.getElementById('deck-left').addEventListener('click', backToLastDeck)
+document.getElementById('deck-right').addEventListener('click', goToNextDeck)
+document.getElementById('deck-left').addEventListener('click', backToLastDeck)
 // document.getElementById('shift-to-top').addEventListener('click', shiftToTop)
 // document.getElementById('shift-top-bottom').addEventListener('click', shiftToBottom)
 // document.getElementById('retract').addEventListener('click', retract)
@@ -91,7 +91,7 @@ const cardContainer = document.getElementById('card-container')
 function createCard(card, index){
   const cardDiv = document.createElement('div')
   cardDiv.classList.add('card')
-  // cardDiv.id = `card${index}`
+  cardDiv.id = `card${index}`
 
   const img = document.createElement('img')
   // get the image resource of the 
@@ -101,14 +101,49 @@ function createCard(card, index){
   cardContainer.appendChild(cardDiv)
 }
 
-console.log(sessionCards[0][0].getURL())
-
-const card1 = sessionCards[0][0]
-createCard(card1, 1)
-
 // generateCards(sessionCards, deckIndex)
+function generateDeck(sessCard, dIndex){
+  for(var i = 1; i <= sessCard[dIndex].length; i++){
+    createCard(sessCard[dIndex][i-1], i)
+  }
+}
+
+document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
+document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
+generateDeck(sessionCards,deckIndex)
+// function for each event listener
+// move from one deck to the other
+function goToNextDeck(){
+  if(deckIndex < (sessionCards.length-1)){
+    cardContainer.innerHTML = ''
+    deckIndex++
+    generateDeck(sessionCards, deckIndex)
+    document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
+  }
+}
+// backToLastDeck
+function backToLastDeck(){
+  if(deckIndex > 0){
+    cardContainer.innerHTML = ''
+    deckIndex--
+    generateDeck(sessionCards, deckIndex)
+    document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
+  }
+}
 
 
+// goToNextDeck
+document.addEventListener('keydown', (event) => {
+  if(event.key === "ArrowRight" && event.altKey){
+    goToNextDeck()
+  }
+});
+// backToLastDeck
+document.addEventListener('keydown', (event) => {
+  if(event.key === "ArrowLeft" && event.altKey){
+    backToLastDeck()
+  }
+});
 
 
 // for(var i = 1; i <= deck_no; i++){
