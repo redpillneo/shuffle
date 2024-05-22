@@ -78,11 +78,12 @@ document.getElementById('deck-right').addEventListener('click', goToNextDeck)
 document.getElementById('deck-left').addEventListener('click', backToLastDeck)
 document.getElementById('shift-to-top').addEventListener('click', shiftToTop)
 document.getElementById('shift-to-bottom').addEventListener('click', shiftToBottom)
-// document.getElementById('retract').addEventListener('click', retract)
+document.getElementById('retract').addEventListener('click', retract)
 document.getElementById('peek').addEventListener('click', peek)
 
 let deckIndex = 0
 let cardIndex = 0
+let peekCards = 0
 
 // function to generate cards based on which deck it is and sessionCards
 
@@ -145,6 +146,10 @@ function displayCard(index) {
   cards.forEach((card, i) => {
     card.style.display = (i === index) ? 'block' : 'none';
     card.style.zIndex = `100`
+    // const img = document.querySelector('img')
+    // img.style.transform = `translate(0px, 0px)`
+    // const cardContainer = document.getElementById('card-container')
+    // cardContainer.style.transform = `translate(0px, 0px)`
   })
 }
 
@@ -201,12 +206,21 @@ document.addEventListener('keydown', (event) => {
   }
 })
 
+document.addEventListener('keydown', (event) => {
+  if(event.key === "ArrowLeft" && !event.shiftKey && !event.altKey){
+    if(peekCards >= 0){
+      retract(peekCards)
+      peekCards--
+    }
+  }
+})
+
 // peek function
-let peekCards = 0
 
 document.addEventListener('keydown', (event) => {
     // peek(peekCards)
   if(event.key === "ArrowRight" && !event.shiftKey && !event.altKey){
+    console.log("peekCards: ", peekCards)
     console.log("peek")
     if(peekCards < 6){
       peekCards++
@@ -236,9 +250,12 @@ document.addEventListener('keydown', (event) => {
 // }
 
 function peek(peeks){
-  for(var i = peeks, offset = 35, zIndex = 100; i >= 0; i--, offset+=35, zIndex++){
-    const card = document.getElementById(`card${cardIndex+i}`)
+  console.log("peeks: ", peeks)
+  for(var i = peeks, offset = 35, zIndex = 100; i > 0; i--, offset+=35, zIndex++){
+    const card = document.getElementById(`card${cardIndex+(i)}`)
+    console.log("i and card: ", i, card)
     const card2 = document.getElementById(`card${cardIndex+(i+1)}`)
+    card.style.zIndex = `${zIndex+1}`
     // card.style.transform = `translate(-${offset/2}px, 0px)`
     // card2.style.transform = `translate(-${offset}px, 0px)`
     card2.style.display = `block`
@@ -246,12 +263,35 @@ function peek(peeks){
     const img = card.querySelector('img')
     img.style.position = `absolute`
     img.style.transform = `translate(${offset}px, 0px)` 
-    console.log(card)
     const cardContainer = document.getElementById("card-container")
     cardContainer.style.transform = `translate(-${offset/2}px, 0px)`
+    console.log(cardContainer.style.transform)
     // cardContainer.style.transform = `translate{-${offset}px, 0px}`
   }
 }
+
+function retract(peeks){
+  console.log("retract called")
+  console.log("peeks: ", peeks)
+  for(var i = peeks, offset = 35, zIndex = 100; i > 0; i--, zIndex--, offset+=35){
+    const card = document.getElementById(`card${cardIndex+i}`)
+    // card.style.zIndex = `${zIndex}`
+    let cardOffset = (offset-35 <= 0) ? 0 : (offset-35)
+    console.log("card-id and offset", card.id, cardOffset)
+    const img = card.querySelector('img')
+    img.style.transform = `translate(${cardOffset}px, 0px)`
+    
+    // const img = card.querySelector('img')
+    // let cardOffset = (offset-35 < 0) ? 0 : (offset-35)
+    // img.style.transform = `translate(${cardOffset}px, 0px)`
+    // const cardContainer = document.getElementById("card-container")
+    // console.log(contOffset)
+    // let contOffset = (17.5-(offset/2) < 0) ? 0 : (17.5-(offset/2) < 0)
+    // cardContainer.style.transform = `translate(${17.5-(offset/2)}px, 0px)`
+    // console.log(cardContainer.style.transform)
+  }
+}
+
 
 generateDeck(sessionCards, deckIndex)
 // const card = document.getElementById('card2')
