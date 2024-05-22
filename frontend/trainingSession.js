@@ -122,16 +122,19 @@ function goToNextDeck(){
     console.log(deckIndex)
     generateDeck(sessionCards, deckIndex)
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
+    document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
   }
 }
 // backToLastDeck
 function backToLastDeck(){
+  cardIndex = 0
   if(deckIndex >= 1){
     cardContainer.innerHTML = ''
     deckIndex--
     console.log("the deck index is", deckIndex)
     generateDeck(sessionCards, deckIndex)
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
+    document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
   }
   displayCard(0)
 }
@@ -160,12 +163,14 @@ function shiftToBottom() {
   if (cardIndex < sessionCards[deckIndex].length-1) {
     cardIndex++;
     displayCard(cardIndex);
+    document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
   }
 }
 function shiftToTop() {
   if (cardIndex > 0) {
     cardIndex--;
     displayCard(cardIndex);
+    document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
   }
 }
 // goToNextDeck
