@@ -170,14 +170,12 @@ function shiftToTop() {
 }
 // goToNextDeck
 document.addEventListener('keydown', (event) => {
-  displayCard(0)
   if(event.key === "ArrowRight" && event.altKey){
     goToNextDeck()
   }
 });
 // backToLastDeck
 document.addEventListener('keydown', (event) => {
-  displayCard(0)
   if(event.key === "ArrowLeft" && event.altKey){
     backToLastDeck()
   }
