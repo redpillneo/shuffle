@@ -144,6 +144,7 @@ function displayCard(index) {
   const cards = document.querySelectorAll('.card')
   cards.forEach((card, i) => {
     card.style.display = (i === index) ? 'block' : 'none';
+    card.style.zIndex = `100`
   })
 }
 
@@ -205,31 +206,44 @@ let peekCards = 0
 
 document.addEventListener('keydown', (event) => {
     // peek(peekCards)
-  if(event.key === "ArrowRight"){
+  if(event.key === "ArrowRight" && !event.shiftKey && !event.altKey){
     console.log("peek")
     peekCards++
     peek(peekCards)
   }
 })
 
+// function peek(peeks){
+//   // const card = document.getElementById('card1')
+//   // const img = card.querySelector('img')
+//   // img.style.position = 'absolute'
+//   // img.style.transform = `translate(49px, 0px)`
+//   // console.log('why')
+//   for(var i = 1, zIndex = 100, offset = 55; i <= peeks; i++, zIndex--, offset += 55){
+//     console.log("card index: ", cardIndex+peeks+1)
+//     const card = document.getElementById(`card${cardIndex+peeks+1}`)
+//     card.style.display = 'block'
+//     const img = card.querySelector('img')
+//     console.log(img)
+//     img.style.position = 'absolute'
+//     img.style.transform = `translate(${offset}px, 0px)`
+//     card.style.zIndex = `${zIndex}`
+//     // i think I need to display the bottom cards too
+//   }
+//   peekCards++
+// }
+
 function peek(peeks){
-  // const card = document.getElementById('card1')
-  // const img = card.querySelector('img')
-  // img.style.position = 'absolute'
-  // img.style.transform = `translate(49px, 0px)`
-  // console.log('why')
-  for(var i = 1; i <= peeks; i++){
-    console.log("card index: ", cardIndex)
-    const card = document.getElementById(`card${cardIndex+1}`)
+  for(var i = peeks, offset = 55, zIndex = 100; i >= 0; i--, offset+=55, zIndex++){
+    const card = document.getElementById(`card${cardIndex+i}`)
+    const card2 = document.getElementById(`card${cardIndex+(i+1)}`)
+    card2.style.display = `block`
+    card2.style.zIndex = `${zIndex}`
     const img = card.querySelector('img')
-    img.style.position = 'absolute'
-    img.style.transform = `translate(55px, 0px)`
-    card.style.zIndex = '100'
-    const card1 = document.getElementById(`card${cardIndex+2}`)
-    card1.style.display = 'block'
-    // i think I need to display the bottom cards too
+    img.style.position = `absolute`
+    img.style.transform = `translate(${offset}px, 0px)` 
+    console.log(card)
   }
-  peekCards++
 }
 
 generateDeck(sessionCards, deckIndex)
