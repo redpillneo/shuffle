@@ -208,8 +208,10 @@ document.addEventListener('keydown', (event) => {
     // peek(peekCards)
   if(event.key === "ArrowRight" && !event.shiftKey && !event.altKey){
     console.log("peek")
-    peekCards++
-    peek(peekCards)
+    if(peekCards < 6){
+      peekCards++
+      peek(peekCards)
+    }
   }
 })
 
@@ -234,15 +236,20 @@ document.addEventListener('keydown', (event) => {
 // }
 
 function peek(peeks){
-  for(var i = peeks, offset = 55, zIndex = 100; i >= 0; i--, offset+=55, zIndex++){
+  for(var i = peeks, offset = 35, zIndex = 100; i >= 0; i--, offset+=35, zIndex++){
     const card = document.getElementById(`card${cardIndex+i}`)
     const card2 = document.getElementById(`card${cardIndex+(i+1)}`)
+    // card.style.transform = `translate(-${offset/2}px, 0px)`
+    // card2.style.transform = `translate(-${offset}px, 0px)`
     card2.style.display = `block`
     card2.style.zIndex = `${zIndex}`
     const img = card.querySelector('img')
     img.style.position = `absolute`
     img.style.transform = `translate(${offset}px, 0px)` 
     console.log(card)
+    const cardContainer = document.getElementById("card-container")
+    cardContainer.style.transform = `translate(-${offset/2}px, 0px)`
+    // cardContainer.style.transform = `translate{-${offset}px, 0px}`
   }
 }
 

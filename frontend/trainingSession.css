@@ -115,6 +115,7 @@ body{
   width: 50%;
   height: 90%;
   margin: 0 auto;
+  justify-items: center;
 }
 
 .card{
