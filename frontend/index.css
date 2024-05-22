@@ -249,7 +249,6 @@ body{
 }
 
 .homeButtons:active{
-  height: 25px; 
   border:#686868 1px solid;
 }
 
