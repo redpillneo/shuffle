@@ -79,7 +79,7 @@ document.getElementById('deck-left').addEventListener('click', backToLastDeck)
 document.getElementById('shift-to-top').addEventListener('click', shiftToTop)
 document.getElementById('shift-to-bottom').addEventListener('click', shiftToBottom)
 // document.getElementById('retract').addEventListener('click', retract)
-// document.getElementById('peek').addEventListener('click', peek)
+document.getElementById('peek').addEventListener('click', peek)
 
 let deckIndex = 0
 let cardIndex = 0
@@ -200,9 +200,47 @@ document.addEventListener('keydown', (event) => {
   }
 })
 
-generateDeck(sessionCards, deckIndex)
+// peek function
+let peekCards = 0
 
-// for(var i = 1; i <= deck_no; i++){
+document.addEventListener('keydown', (event) => {
+    // peek(peekCards)
+  if(event.key === "ArrowRight"){
+    console.log("peek")
+    peekCards++
+    peek(peekCards)
+  }
+})
+
+function peek(peeks){
+  // const card = document.getElementById('card1')
+  // const img = card.querySelector('img')
+  // img.style.position = 'absolute'
+  // img.style.transform = `translate(49px, 0px)`
+  // console.log('why')
+  for(var i = 1; i <= peeks; i++){
+    console.log("card index: ", cardIndex)
+    const card = document.getElementById(`card${cardIndex+1}`)
+    const img = card.querySelector('img')
+    img.style.position = 'absolute'
+    img.style.transform = `translate(55px, 0px)`
+    card.style.zIndex = '100'
+    const card1 = document.getElementById(`card${cardIndex+2}`)
+    card1.style.display = 'block'
+    // i think I need to display the bottom cards too
+  }
+  peekCards++
+}
+
+generateDeck(sessionCards, deckIndex)
+// const card = document.getElementById('card2')
+// const img = card.querySelector('img')
+// img.style.position = 'absolute'
+
+// img.style.transform = `translate(49px, 0px)`
+
+
+// for(var i = 1; i <= deck_no; i
 //   console.log("deck ", i)
 //   var deck = []
 //   for(var j = 1; j <= card_no; j++){  
