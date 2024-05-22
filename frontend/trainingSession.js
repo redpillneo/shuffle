@@ -114,29 +114,30 @@ document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
 // function for each event listener
 // move from one deck to the other
 function goToNextDeck(){
-  cardIndex = 0
-  displayCard(cardIndex);
   if(deckIndex < (sessionCards.length-1)){
+    cardIndex = 0
+    displayCard(cardIndex);
     cardContainer.innerHTML = ''
     deckIndex++
     console.log(deckIndex)
     generateDeck(sessionCards, deckIndex)
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
     document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
+    displayCard(0)
   }
 }
 // backToLastDeck
 function backToLastDeck(){
-  cardIndex = 0
   if(deckIndex >= 1){
+    cardIndex = 0
     cardContainer.innerHTML = ''
     deckIndex--
     console.log("the deck index is", deckIndex)
     generateDeck(sessionCards, deckIndex)
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`
     document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`
+    displayCard(0)
   }
-  displayCard(0)
 }
 
 function displayCard(index) {
