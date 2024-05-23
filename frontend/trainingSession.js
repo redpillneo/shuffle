@@ -273,9 +273,11 @@ function peek(peeks){
 function retract(peeks){
   console.log("retract called")
   console.log("peeks: ", peeks)
-  for(var i = peeks, offset = 35, zIndex = 100; i > 0; i--, zIndex--, offset+=35){
+  var offset = 35
+  var contOffset = (35/2)
+  for(var i = peeks, zIndex = 100; i > 0; i--, zIndex++, offset+=35, contOffset-=(35/2)){
     const card = document.getElementById(`card${cardIndex+i}`)
-    // card.style.zIndex = `${zIndex}`
+    card.style.zIndex = `${zIndex}`
     let cardOffset = (offset-35 <= 0) ? 0 : (offset-35)
     console.log("card-id and offset", card.id, cardOffset)
     const img = card.querySelector('img')
@@ -290,6 +292,15 @@ function retract(peeks){
     // cardContainer.style.transform = `translate(${17.5-(offset/2)}px, 0px)`
     // console.log(cardContainer.style.transform)
   }
+  if(peeks > 0){
+    console.log("peeks: ", peeks)
+    console.log("container offset: ", contOffset)
+    const cardContainer = document.getElementById("card-container")
+    cardContainer.style.transform = `translate(${contOffset}px, 0px)`
+    console.log("actual container offset: ", cardContainer.style.transform)
+  }
+  
+
 }
 
 
