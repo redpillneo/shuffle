@@ -145,7 +145,6 @@ function displayCard(index) {
   const cards = document.querySelectorAll('.card')
   cards.forEach((card, i) => {
     card.style.display = (i === index) ? 'block' : 'none';
-    card.style.zIndex = `100`
     // const img = document.querySelector('img')
     // img.style.transform = `translate(0px, 0px)`
     // const cardContainer = document.getElementById('card-container')
@@ -211,6 +210,7 @@ document.addEventListener('keydown', (event) => {
     if(peekCards >= 0){
       retract(peekCards)
       peekCards--
+      console.log("peekCards: ", peekCards)
     }
   }
 })
@@ -220,44 +220,19 @@ document.addEventListener('keydown', (event) => {
 document.addEventListener('keydown', (event) => {
     // peek(peekCards)
   if(event.key === "ArrowRight" && !event.shiftKey && !event.altKey){
-    console.log("peekCards: ", peekCards)
-    console.log("peek")
     if(peekCards < 6){
       peekCards++
       peek(peekCards)
+      console.log("peekCards: ", peekCards)
     }
   }
 })
 
-// function peek(peeks){
-//   // const card = document.getElementById('card1')
-//   // const img = card.querySelector('img')
-//   // img.style.position = 'absolute'
-//   // img.style.transform = `translate(49px, 0px)`
-//   // console.log('why')
-//   for(var i = 1, zIndex = 100, offset = 55; i <= peeks; i++, zIndex--, offset += 55){
-//     console.log("card index: ", cardIndex+peeks+1)
-//     const card = document.getElementById(`card${cardIndex+peeks+1}`)
-//     card.style.display = 'block'
-//     const img = card.querySelector('img')
-//     console.log(img)
-//     img.style.position = 'absolute'
-//     img.style.transform = `translate(${offset}px, 0px)`
-//     card.style.zIndex = `${zIndex}`
-//     // i think I need to display the bottom cards too
-//   }
-//   peekCards++
-// }
-
 function peek(peeks){
-  console.log("peeks: ", peeks)
   for(var i = peeks, offset = 35, zIndex = 100; i > 0; i--, offset+=35, zIndex++){
     const card = document.getElementById(`card${cardIndex+(i)}`)
-    console.log("i and card: ", i, card)
     const card2 = document.getElementById(`card${cardIndex+(i+1)}`)
     card.style.zIndex = `${zIndex+1}`
-    // card.style.transform = `translate(-${offset/2}px, 0px)`
-    // card2.style.transform = `translate(-${offset}px, 0px)`
     card2.style.display = `block`
     card2.style.zIndex = `${zIndex}`
     const img = card.querySelector('img')
@@ -265,8 +240,8 @@ function peek(peeks){
     img.style.transform = `translate(${offset}px, 0px)` 
     const cardContainer = document.getElementById("card-container")
     cardContainer.style.transform = `translate(-${offset/2}px, 0px)`
-    console.log(cardContainer.style.transform)
-    // cardContainer.style.transform = `translate{-${offset}px, 0px}`
+    console.log("card and z-index: ", card.id , card.style.zIndex)
+    
   }
 }
 
@@ -277,30 +252,18 @@ function retract(peeks){
   var contOffset = (35/2)
   for(var i = peeks, zIndex = 100; i > 0; i--, zIndex++, offset+=35, contOffset-=(35/2)){
     const card = document.getElementById(`card${cardIndex+i}`)
+    const card2 = document.getElementById(`card${cardIndex+i+1}`)
     card.style.zIndex = `${zIndex}`
+    card2.style.zIndex = `${zIndex-1}`
     let cardOffset = (offset-35 <= 0) ? 0 : (offset-35)
-    console.log("card-id and offset", card.id, cardOffset)
     const img = card.querySelector('img')
     img.style.transform = `translate(${cardOffset}px, 0px)`
-    
-    // const img = card.querySelector('img')
-    // let cardOffset = (offset-35 < 0) ? 0 : (offset-35)
-    // img.style.transform = `translate(${cardOffset}px, 0px)`
-    // const cardContainer = document.getElementById("card-container")
-    // console.log(contOffset)
-    // let contOffset = (17.5-(offset/2) < 0) ? 0 : (17.5-(offset/2) < 0)
-    // cardContainer.style.transform = `translate(${17.5-(offset/2)}px, 0px)`
-    // console.log(cardContainer.style.transform)
+    console.log("card and z-index: ", card.id , card.style.zIndex)
   }
   if(peeks > 0){
-    console.log("peeks: ", peeks)
-    console.log("container offset: ", contOffset)
     const cardContainer = document.getElementById("card-container")
     cardContainer.style.transform = `translate(${contOffset}px, 0px)`
-    console.log("actual container offset: ", cardContainer.style.transform)
   }
-  
-
 }
 
 
