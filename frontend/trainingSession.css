@@ -226,3 +226,10 @@ body{
   width: auto;
 }
 
+.card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-container {
+  transition: transform 0.3s ease-in-out;
+}
