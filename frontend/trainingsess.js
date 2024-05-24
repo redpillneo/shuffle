@@ -1,10 +1,11 @@
 // importing the standard_deck
 import { Card, createDeck, pickRandomCard, isCardInDeck } from './standard_deck.js';
 
+let intervalId;
 let deckIndex = 0;
 let cardIndex = 0;
 let peekCards = 0;
-let intervalId;
+
 
 const standard_deck = createDeck();
 
@@ -14,14 +15,16 @@ function getStoredData() {
 }
 
 const data = getStoredData();
+console.log(data);
 
 const { deck_no, card_no, time_mode, shuffle_mode, recall_mode } = data;
 
+console.log("welcome to training session!");
 
 // creation of cards
 const sessionCards = [];
-console.log("number of decks: ", deck_no);
-console.log("number of cards: ", card_no);
+console.log(deck_no);
+console.log(card_no);
 
 for (let i = 1; i <= deck_no; i++) {
   const deck = [];
@@ -75,18 +78,14 @@ function generateDeck(sessCard, dIndex) {
     createCard(sessCard[dIndex][i - 1], i);
   }
 }
+
 document.getElementById('deckNoVal').innerHTML = `${deckIndex + 1}/${deck_no}`;
 document.getElementById('cardNoVal').innerHTML = `${cardIndex + 1}/${card_no}`;
-
-
-// remove
 
 
 function goToNextDeck() {
   if (deckIndex < (sessionCards.length - 1)) {
     cardIndex = 0;
-    resetContainerOffset()
-    peekCards = 0;
     displayCard(cardIndex);
     cardContainer.innerHTML = '';
     deckIndex++;
@@ -94,32 +93,12 @@ function goToNextDeck() {
     document.getElementById('deckNoVal').innerHTML = `${deckIndex + 1}/${deck_no}`;
     document.getElementById('cardNoVal').innerHTML = `${cardIndex + 1}/${card_no}`;
     displayCard(0);
-
   }
 }
-// function to iterate through each card and reset their z-index
-
-function resetIndex(){
-  const cards = document.querySelectorAll('.card')
-  for(var i = 1; i <= cards.length; i++){
-    const img = cards[i-1].querySelector('img')
-    img.style.zIndex  = `100`
-    img.style.transform = `translate(0px, 0px)`
-  }
-}
-
-function resetContainerOffset(){
-  const cardCont = document.getElementById('card-container')
-  cardCont.style.transform = `translate(0px, 0px)`
-}
-
 
 function backToLastDeck() {
   if (deckIndex >= 1) {
-    resetContainerOffset()
-    resetIndex()
     cardIndex = 0;
-    peekCards = 0;
     cardContainer.innerHTML = '';
     deckIndex--;
     generateDeck(sessionCards, deckIndex);
@@ -138,9 +117,6 @@ function displayCard(index) {
 
 function shiftToBottom() {
   if (cardIndex < sessionCards[deckIndex].length - 1) {
-    resetIndex()
-    resetContainerOffset()
-    peekCards = 0
     cardIndex++;
     displayCard(cardIndex);
     const card = document.getElementById(`card${cardIndex + 1}`);
@@ -154,41 +130,54 @@ function shiftToBottom() {
 
 function shiftToTop() {
   if (cardIndex > 0) {
-    resetContainerOffset()
-    resetIndex()
     cardIndex--;
     peekCards = 0;
     displayCard(cardIndex);
     document.getElementById('cardNoVal').innerHTML = `${cardIndex + 1}/${card_no}`;
-    const card = document.getElementById(`card${cardIndex + 1}`);
-    const img = card.querySelector('img');
-    img.style.transform = `translate(0px, 0px)`;
-    document.getElementById('cardNoVal').innerHTML = `${cardIndex + 1}/${card_no}`;
-    const cardCont = document.getElementById('card-container');
   }
 }
-function handleKeyDown(event){
+
+document.addEventListener('keydown', (event) => {
   if (event.key === "ArrowRight" && event.altKey) {
     goToNextDeck();
-  } else if(event.key === "ArrowLeft" && event.altKey) {
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === "ArrowLeft" && event.altKey) {
     backToLastDeck();
-  } else if(event.key === "ArrowRight" && event.shiftKey) {
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === "ArrowRight" && event.shiftKey) {
     shiftToBottom();
-  } else if (event.key === "ArrowLeft" && event.shiftKey) {
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === "ArrowLeft" && event.shiftKey) {
     shiftToTop();
-  } else if(event.key === "ArrowLeft" && !event.shiftKey && !event.altKey) {
+  }
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === "ArrowLeft" && !event.shiftKey && !event.altKey) {
     if (peekCards >= 0) {
       retract(peekCards);
       peekCards--;
-    } 
-  } else if(event.key === "ArrowRight" && !event.shiftKey && !event.altKey){
-    if(peekCards < 6){
-      peekCards++
-      peek(peekCards)
     }
- }
+  }
+});
 
-}
+document.addEventListener('keydown', (event) => {
+  if (event.key === "ArrowRight" && !event.shiftKey && !event.altKey) {
+    if (peekCards < 6) {
+      peekCards++;
+      peek(peekCards);
+    }
+  }
+});
 
 function peek(peeks) {
   for (let i = peeks, offset = 35, zIndex = 100; i > 0; i--, offset += 35, zIndex++) {
@@ -222,46 +211,23 @@ function retract(peeks) {
     cardContainer.style.transform = `translate(${contOffset}px, 0px)`;
   }
 }
-function peekHandler(){
-    if(peekCards < 6){
-      peek(peekCards)
-      peekCards++
-    }
-}
-function retractHandler(){
-    if (peekCards >= 0) {
-      retract(peekCards);
-      peekCards--;
-    } 
-}
 
-document.getElementById('deck-right').addEventListener('click', goToNextDeck);
-document.getElementById('deck-left').addEventListener('click', backToLastDeck);
-document.getElementById('shift-to-top').addEventListener('click', shiftToTop);
-document.getElementById('shift-to-bottom').addEventListener('click', shiftToBottom);
-document.getElementById('retract').addEventListener('click', retractHandler); 
-document.getElementById('peek').addEventListener('click', peekHandler);
-document.addEventListener('keydown', handleKeyDown)
-
-export function cleanup() {
+function cleanup() {
   console.log('cleanup');
   clearInterval(intervalId);
   document.getElementById('deck-right').removeEventListener('click', goToNextDeck);
   document.getElementById('deck-left').removeEventListener('click', backToLastDeck);
   document.getElementById('shift-to-top').removeEventListener('click', shiftToTop);
   document.getElementById('shift-to-bottom').removeEventListener('click', shiftToBottom);
-  document.getElementById('retract').removeEventListener('click', retractHandler); 
-  document.getElementById('peek').removeEventListener('click', peekHandler);
-  document.removeEventListener('keydown', handleKeyDown)
+  document.getElementById('retract').removeEventListener('click', retract);
+  document.getElementById('peek').removeEventListener('click', peek);
 }
 
 generateDeck(sessionCards, deckIndex);
 
-document.getElementById('finishButton').addEventListener('click', function(){
-  window.location.href = 'simComp.html'
-  cleanup()
-})
+export { sessionCards };
 
-localStorage.setItem('sessionCards', JSON.stringify(sessionCards));
-
-
+document.getElementById('finishButton').addEventListener("click", function () {
+  cleanup();
+  window.location.href = 'simComp.html';
+});
