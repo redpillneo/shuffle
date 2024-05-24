@@ -62,16 +62,26 @@ function cover(){
 }
 
 function nextCard() {
-  if(cardIndex == card_no){
+  console.log("decks, cards, sessionCards: ", deckIndex, cardIndex, sessCardIndex)
+  if(cardIndex == card_no-1 && deckIndex <= deckIndex){
+    document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`;
+    document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`;
+    console.log('if')
     cardIndex = 0
     deckIndex++
-  }if (sessCardIndex < totalCardNums && deckIndex <= deck_no){
+    sessCardIndex++
+    displayCard(sessCardIndex);
+  } 
+  else if(cardIndex < card_no && deckIndex <= deck_no){
+    console.log('else if')
     cardIndex++;
     sessCardIndex++
     displayCard(sessCardIndex);
     document.getElementById('cardNoVal').innerHTML = `${cardIndex}/${card_no}`;
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`;
+
   }
+
 }
 
 
@@ -92,14 +102,18 @@ function populateCardOptions() {
   });
 }
 function checkCard(deck, card){
-  const guessCard = document.getElementById('cardSelect')
-  console.log(guessCard) 
+  const cardSelect = document.getElementById('cardSelect')
+  const guessCard = cardSelect.options[cardSelect.selectedIndex].value
+  const rightCard = sessionCards[deck][card]
+  console.log("deck, card: ", deck, card)
+  console.log(rightCard)
+
 }
 
 
 document.getElementById('cardSelect').addEventListener('keypress', function(event){
   if(event.key === 'Enter'){
-    checkCard()
+    checkCard(deckIndex, cardIndex)
     nextCard()
   }
 })
