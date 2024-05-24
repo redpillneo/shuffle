@@ -1,12 +1,16 @@
 
 const sessionCards = JSON.parse(localStorage.getItem('sessionCards'));
-
 // console.log(sessionCards[0][0])
 let deck_no = sessionCards.length
 let card_no = sessionCards[0].length
+const totalCardNums = deck_no * card_no
+let intervalId
 let cardIndex = 0
+let deckIndex = 0
 let correctCardCounts = 0
+let sessCardIndex = 0
 
+// timer
 
 const cardContainer = document.getElementById('card-container');
 
@@ -24,9 +28,13 @@ function createCard(card, index) {
   displayCard(0);
 }
 
-function generateDeck(sessCard, dIndex) {
-  for (let i = 1; i <= sessCard[dIndex].length; i++) {
-    createCard(sessCard[dIndex][i - 1], i);
+function generateDeck(sessCard) {
+  var counter = 1
+  for (let i = 1; i <= deck_no; i++) {
+    for(let j = 1; j <= card_no; j++, counter++){
+      createCard(sessCard[i-1][j-1], counter)
+      // createCard(sessCard[j - 1][i - 1], i);
+    }
   }
 }
 
@@ -45,30 +53,29 @@ function generateSessionCards(deck_no){
   cardDiv.appendChild(img)
   cardContainer.appendChild(cardDiv)
   img.src = 'images/cards/cardCover.png'
-  for(var i = 0; i < deck_no; i++){
-    generateDeck(sessionCards, i)
-  }
+  generateDeck(sessionCards)
 }
 
 function cover(){
+  const cover = document.getElementById('cardCover')
+  cover.style.display = 'block'
 }
 
 function nextCard() {
-  if (cardIndex < card_no - 1) {
+  if(cardIndex == card_no){
+    cardIndex = 0
+    deckIndex++
+  }if (sessCardIndex < totalCardNums && deckIndex <= deck_no){
     cardIndex++;
-    displayCard(cardIndex);
-    document.getElementById('cardNoVal').innerHTML = `${cardIndex + 1}/${card_no}`;
+    sessCardIndex++
+    displayCard(sessCardIndex);
+    document.getElementById('cardNoVal').innerHTML = `${cardIndex}/${card_no}`;
+    document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`;
   }
 }
 
-function checkCard(){
-
-}
-
-checkCard()
 
 // evetListeners
-// document.getElementById('nextCard').addEventListener('click', checkCard)
 function populateCardOptions() {
   const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
   const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
@@ -84,7 +91,38 @@ function populateCardOptions() {
     });
   });
 }
+function checkCard(deck, card){
+  const guessCard = document.getElementById('cardSelect')
+  console.log(guessCard) 
+}
 
-window.onload = populateCardOptions
+
+document.getElementById('cardSelect').addEventListener('keypress', function(event){
+  if(event.key === 'Enter'){
+    checkCard()
+    nextCard()
+  }
+})
+
+function startTimer(display) {
+  let timer = 0, minutes, seconds;
+  intervalId = setInterval(() => {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    timer++;
+  }, 1000);
+}
+
+window.onload = () => {
+  populateCardOptions()
+  const display = document.getElementById('timer');
+  startTimer(display);
+};
 
 generateSessionCards(deck_no)

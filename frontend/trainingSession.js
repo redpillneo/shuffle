@@ -264,7 +264,9 @@ generateDeck(sessionCards, deckIndex);
 
 document.getElementById('finishButton').addEventListener('click', function(){
   window.location.href = 'simComp.html'
-  cleanup()
+  setTimeout(() => {
+    cleanup()
+  }, 2000);
 })
 
 localStorage.setItem('sessionCards', JSON.stringify(sessionCards));
