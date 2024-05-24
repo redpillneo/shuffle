@@ -19,9 +19,11 @@ const { deck_no, card_no, time_mode, shuffle_mode, recall_mode } = data;
 
 
 // creation of cards
-const sessionCards = [];
+window.sessionCards = [];
 console.log("number of decks: ", deck_no);
 console.log("number of cards: ", card_no);
+
+
 
 for (let i = 1; i <= deck_no; i++) {
   const deck = [];
@@ -235,6 +237,9 @@ function retractHandler(){
     } 
 }
 
+export function fetchSessionCards(){
+  return sessionCards
+}
 document.getElementById('deck-right').addEventListener('click', goToNextDeck);
 document.getElementById('deck-left').addEventListener('click', backToLastDeck);
 document.getElementById('shift-to-top').addEventListener('click', shiftToTop);
