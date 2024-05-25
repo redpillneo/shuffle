@@ -265,7 +265,7 @@ body{
 #resultOverlay{
   display: none;
   font-size: large;
-  height: 100px;
+  height: max-content;
   width: 200px;
   margin: 0 auto;
   text-align: center;
