@@ -262,5 +262,28 @@ body{
   display: none; /* Initially hidden */
 }
 
+#resultOverlay{
+  display: none;
+  font-size: large;
+  height: 100px;
+  width: 200px;
+  margin: 0 auto;
+  text-align: center;
+  align-items: center;
+  background-color: #BDAE93;
+  align-self: center;
+  font-weight: 900;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
 
+#resultOverlay p{
+  padding: 0px;
+  margin: 0px;
+}
 
+#resultOverlay h2{
+  padding: 0px;
+  margin: 0px;
+  color:#1e1e1e ;
+}

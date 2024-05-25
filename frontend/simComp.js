@@ -94,37 +94,57 @@ function populateCardOptions() {
   });
 }
 function checkCard(deck, card){
-  const cardSelect = document.getElementById('cardSelect')
-  const guessCard = cardSelect.options[cardSelect.selectedIndex].value
-  const rightCard = sessionCards[deck][card]
-  const rightCardName = `${rightCard.card_name} of ${rightCard.suite}`
-  console.log("deck, card: ", deck, card)
-  console.log("right card: ", rightCardName)
-  console.log("guess card: ", guessCard)
-  const guessDiv = document.getElementById('guessDiv')
-  guessDiv.style.display = 'block'
+  if(deck < deck_no && card < card_no){
+    const cardSelect = document.getElementById('cardSelect')
+    const guessCard = cardSelect.options[cardSelect.selectedIndex].value
+    const rightCard = sessionCards[deck][card]
+    const rightCardName = `${rightCard.card_name} of ${rightCard.suite}`
+    console.log("deck, card: ", deck, card)
+    console.log("right card: ", rightCardName)
+    console.log("guess card: ", guessCard)
+    const guessDiv = document.getElementById('guessDiv')
+    guessDiv.style.display = 'block'
 
-  if(guessCard == rightCardName){
-    guessDiv.innerHTML = 'Correct!'
-    setTimeout(() => {
-      guessDiv.innerHTML = ''
-      guessDiv.style.display = 'none'
-    }, 3000)
+    if(guessCard == rightCardName){
+      guessDiv.innerHTML = 'Correct!'
+      setTimeout(() => {
+        guessDiv.innerHTML = ''
+        guessDiv.style.display = 'none'
+      }, 3000)
+    }
+    else{
+      guessDiv.innerHTML = 'Incorrect!'
+      setTimeout(() => {
+        guessDiv.innerHTML = ''
+        guessDiv.style.display = 'none'
+      }, 3000)
+    }
   }
-  else{
-    guessDiv.innerHTML = 'Incorrect!'
-    setTimeout(() => {
-      guessDiv.innerHTML = ''
-      guessDiv.style.display = 'none'
-    }, 3000)
+
+}
+function checkIfDone(){
+  if(sessCardIndex == totalCardNums){
+    const resultDiv = document.getElementById('resultOverlay')
+    document.getElementById('deck-div').style.display = 'none'
+    document.getElementById('time-div').style.display = 'none'
+    document.getElementById('nav-buttons').style.display = 'none'
+    document.getElementById('status-bar').style.display = 'none'
+    resultDiv.style.display = 'flex'
+    resultDiv.style.flexDirection = 'column'
+    
+    const correctCard = document.createElement('p')
+    resultDiv.appendChild(correctCard)
+    correctCard.style.display = 'block'
+    correctCard.innerHTML = `Correct Cards: ${correctCardCounts}/${totalCardNums}`
   }
 }
 
-
 document.getElementById('cardSelect').addEventListener('keypress', function(event){
   if(event.key === 'Enter'){
+    checkIfDone()
     checkCard(deckIndex, cardIndex)
     nextCard()
+    console.log("correct card counts: ", correctCardCounts)
   }
 })
 
@@ -150,3 +170,4 @@ window.onload = () => {
 };
 
 generateSessionCards(deck_no)
+
