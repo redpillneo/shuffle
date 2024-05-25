@@ -247,5 +247,20 @@ body{
   display: inline-block;
 }
 
+#guessDiv{
+  font: inherit;
+  color: red;
+  font-weight: 900;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color:#A9A7BA;
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 0; /* Above the overlay */
+  display: none; /* Initially hidden */
+}
+
 
 

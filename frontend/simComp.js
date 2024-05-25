@@ -56,32 +56,24 @@ function generateSessionCards(deck_no){
   generateDeck(sessionCards)
 }
 
-function cover(){
-  const cover = document.getElementById('cardCover')
-  cover.style.display = 'block'
-}
+
 
 function nextCard() {
-  console.log("decks, cards, sessionCards: ", deckIndex, cardIndex, sessCardIndex)
   if(cardIndex == card_no-1 && deckIndex <= deckIndex){
     document.getElementById('cardNoVal').innerHTML = `${cardIndex+1}/${card_no}`;
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`;
-    console.log('if')
     cardIndex = 0
     deckIndex++
     sessCardIndex++
     displayCard(sessCardIndex);
   } 
   else if(cardIndex < card_no && deckIndex <= deck_no){
-    console.log('else if')
-    cardIndex++;
+    cardIndex++
     sessCardIndex++
     displayCard(sessCardIndex);
     document.getElementById('cardNoVal').innerHTML = `${cardIndex}/${card_no}`;
     document.getElementById('deckNoVal').innerHTML = `${deckIndex+1}/${deck_no}`;
-
   }
-
 }
 
 
@@ -105,9 +97,27 @@ function checkCard(deck, card){
   const cardSelect = document.getElementById('cardSelect')
   const guessCard = cardSelect.options[cardSelect.selectedIndex].value
   const rightCard = sessionCards[deck][card]
+  const rightCardName = `${rightCard.card_name} of ${rightCard.suite}`
   console.log("deck, card: ", deck, card)
-  console.log(rightCard)
+  console.log("right card: ", rightCardName)
+  console.log("guess card: ", guessCard)
+  const guessDiv = document.getElementById('guessDiv')
+  guessDiv.style.display = 'block'
 
+  if(guessCard == rightCardName){
+    guessDiv.innerHTML = 'Correct!'
+    setTimeout(() => {
+      guessDiv.innerHTML = ''
+      guessDiv.style.display = 'none'
+    }, 3000)
+  }
+  else{
+    guessDiv.innerHTML = 'Incorrect!'
+    setTimeout(() => {
+      guessDiv.innerHTML = ''
+      guessDiv.style.display = 'none'
+    }, 3000)
+  }
 }
 
 

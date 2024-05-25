@@ -230,6 +230,7 @@ function peekHandler(){
       peekCards++
     }
 }
+
 function retractHandler(){
     if (peekCards >= 0) {
       retract(peekCards);
